@@ -1,9 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchStory } from './API/idomooAPI'
+import { fetchStory, createStory } from './API/idomooAPI'
     
 const initialState = {
   story: {},
   status: "",
+  generateVideoStatus: "",
+  videoGeneratedData: {},
+  checkVideoStatusUrl: null,
+  videoGeneratedUrl: null,
+  videoGeneratedStatus: ""
 };
 
 export const fetchStoryBoardById = createAsyncThunk('idomoo/fetchStory', async () => {
@@ -12,6 +17,11 @@ export const fetchStoryBoardById = createAsyncThunk('idomoo/fetchStory', async (
   }
 );
 
+export const initGenerateVideo = createAsyncThunk('idomoo/createStory', async (data) => {
+    const response = await createStory(data);
+    return response;
+});
+
 export const videoSlice = createSlice({
   name: 'idomoo',
   initialState,
@@ -19,6 +29,9 @@ export const videoSlice = createSlice({
     setField: (state, action) => {
       state.story[action.payload.key].val = action.payload.value;
     },
+    setVideoGeneratedStatus: (state, action) => {
+      state.videoGeneratedStatus = action.payload
+    }
   },
   extraReducers: {
       [fetchStoryBoardById.pending]: (state, action) => {
@@ -34,12 +47,22 @@ export const videoSlice = createSlice({
       },
       [fetchStoryBoardById.rejected]: (state, action) => {
         state.status = "Error";
-      }
+      },
+      [initGenerateVideo.pending]: (state, action) => {
+        state.generateVideoStatus = "Loading";
+      },
+      [initGenerateVideo.fulfilled]: (state, action) => {
+        state.generateVideoStatus = "Completed";
+        state.videoGeneratedData = action.payload
+        state.checkVideoStatusUrl = action.payload?.output?.video[0]?.links?.check_status_url
+        state.videoGeneratedUrl = action.payload?.output?.video[0]?.links?.url
+      },
+      [initGenerateVideo.rejected]: (state, action) => {
+        state.generateVideoStatus = "Error";
+      },
   },
 });
 
-export const { setField } = videoSlice.actions;
-
-export const selectedStory = (state) => state.counter.value;
+export const { setField, setVideoGeneratedStatus } = videoSlice.actions;
 
 export default videoSlice.reducer;

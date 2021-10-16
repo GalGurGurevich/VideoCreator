@@ -1,7 +1,8 @@
 import React from 'react'
 import DynamicField from './DynamicField'
 
-export default function Form({stories, setField}) {
+export default function Form({stories, setField, initGenerateVideo}) {
+
     console.log("Form: ", stories)
     function renderInputsByKeys(stories) {
         const inputs = Object.values(stories).map(function(field, i) {
@@ -14,15 +15,17 @@ export default function Form({stories, setField}) {
         return inputs;
     }
 
-    function callToMakeVideo() {
-
+    async function callToMakeVideo(e) {
+        const formStories = Object.values(stories)
+        e.preventDefault();
+        await initGenerateVideo(formStories)
     }
 
     return (
         <form className="form-container d-flex flex-column p-2">
             {renderInputsByKeys(stories)}
-            <div className="d-flex justify-contnet-center m-20">
-                <button onClick={() => callToMakeVideo()}>Generate</button>
+            <div className="d-flex justify-contnet-center pt-2">
+                <button onClick={(e) => callToMakeVideo(e)}>Generate</button>
             </div>
         </form>
     )

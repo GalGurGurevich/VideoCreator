@@ -8,7 +8,7 @@ import Form from './shared/Form'
 import PreviewVideo from './PreviewVideo'
 import './FormLandingPage.css'
 
-function FormLandingPage({status, stories, setField, fetchStoryBoardById, initGenerateVideo, generateVideoStatus, checkVideoStatusUrl, setVideoGeneratedStatus, videoGeneratedStatus}) {
+function FormLandingPage({status, stories, setField, fetchStoryBoardById, initGenerateVideo, generateVideoStatus, checkVideoStatusUrl, setVideoGeneratedStatus, videoGeneratedStatus, videoURL}) {
 
   useEffect(() => {
     fetchStoryBoardById()
@@ -31,8 +31,11 @@ function FormLandingPage({status, stories, setField, fetchStoryBoardById, initGe
   },[checkVideoStatusUrl, videoGeneratedStatus])
 
   function renderByStatus() {
+    if(videoGeneratedStatus === "Pending") {
+      return <Loader loadingTxt={"The Video is on it's way!..."}/>
+    }
     if(videoGeneratedStatus === 'VIDEO_AVAILABLE')  {
-      return <PreviewVideo /> 
+      return <PreviewVideo videoURL={videoURL}/> 
     }
     if(!status || status == "Loading" || generateVideoStatus == "Loading") {
       if(generateVideoStatus == "Loading") return <Loader loadingTxt={"Generating Video, Please Wait..."}/>
@@ -61,7 +64,8 @@ function mapStateToProps(state) {
     stories: state.video.story,
     generateVideoStatus: state.video.generateVideoStatus,
     checkVideoStatusUrl: state.video.checkVideoStatusUrl,
-    videoGeneratedStatus: state.video.videoGeneratedStatus
+    videoGeneratedStatus: state.video.videoGeneratedStatus,
+    videoURL: state.video.videoGeneratedUrl
   }
 }
 

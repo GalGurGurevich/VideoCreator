@@ -26,8 +26,6 @@ const reqURL = new Request('https://usa-api.idomoo.com/api/v2/storyboards/' + st
 
 const postReqURL = new Request('https://usa-api.idomoo.com/api/v2/storyboards/generate', initPost)
 
-const videoStatusReq = new Request(initGet)
-
 export async function fetchStory() {
     const res = await fetch(reqURL);
     const json = await res.json();

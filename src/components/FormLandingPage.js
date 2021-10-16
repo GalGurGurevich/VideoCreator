@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { fetchStoryBoardById, setField, initGenerateVideo, setVideoGeneratedStatus } from './VideoSlice';
-import { fetchVidamooVideoStatus } from './API/idomooAPI';
+import { fetchStoryBoardById, setField, initGenerateVideo, setVideoGeneratedStatus } from '../redux/VideoSlice';
+import { fetchVidamooVideoStatus } from '../API/idomooAPI';
 import { connect } from 'react-redux';
-import Loader from './shared/Loader';
-import Form from './shared/Form';
+import Loader from '../shared/Loader';
+import Form from '../shared/Form';
 import PreviewVideo from './PreviewVideo';
 import './FormLandingPage.css';
 
@@ -40,7 +40,7 @@ function FormLandingPage({
             }
             fetch();
         }
-    }, [videoGeneratedStatusUrl, videoGeneratedStatus]);
+    }, [videoGeneratedStatusUrl, videoGeneratedStatus, setVideoGeneratedStatus]);
 
     function renderByAppStatus() {
         if (videoGeneratedStatus === 'Pending') {

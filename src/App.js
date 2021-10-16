@@ -1,5 +1,5 @@
 import React from 'react';
-import FormLandingPage from './FormLandingPage'
+import FormLandingPage from './components/FormLandingPage'
 
 function App() {
   return (

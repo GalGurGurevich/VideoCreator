@@ -16,7 +16,6 @@ export default function PreviewVideo({videoURL}) {
     
     return (
         <div>
-            <span>Ta Da!</span>
             <div id="idm_player" class="idm-player" ></div>
         </div>
     )

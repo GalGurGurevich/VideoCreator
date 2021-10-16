@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchStory, createStory } from './API/idomooAPI';
+import { fetchStory, createStory } from '../API/idomooAPI';
 
 const initialState = {
     story: {},

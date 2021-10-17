@@ -23,7 +23,9 @@ export default function Form({stories, setField, initGenerateVideo}) {
     return (
         <form className="form-container d-flex flex-column p-2">
             <h3>Enter details below to generate video</h3>
-            {renderInputsByKeys(stories)}
+            <div className="d-flex flex-column">
+                {renderInputsByKeys(stories)}
+            </div>
             <div className="d-flex justify-contnet-center pt-2">
                 <button onClick={(e) => callToMakeVideo(e)}>Generate</button>
             </div>

@@ -46,9 +46,6 @@ function FormLandingPage({
         if (videoGeneratedStatus === 'Pending') {
             return <Loader loadingTxt={"The Video is on it's way!..."} />;
         }
-        if (videoGeneratedStatus === 'VIDEO_AVAILABLE') {
-            return <PreviewVideo videoURL={videoURL} />;
-        }
         if (!storyBoardFetchStatus || storyBoardFetchStatus === 'Loading' || videoCreatorResponseStatus === 'Loading') {
             if (videoCreatorResponseStatus === 'Loading') return <Loader loadingTxt={'Sending Video Generate Req, Please Wait...'} />;
             return <Loader />;

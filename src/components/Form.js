@@ -14,10 +14,10 @@ export default function Form({stories, setField, initGenerateVideo}) {
         return inputs;
     }
 
-    async function callToMakeVideo(e) {
+    function callToMakeVideo(e) {
         const formStories = Object.values(stories)
         e.preventDefault();
-        await initGenerateVideo(formStories)
+        initGenerateVideo(formStories)
     }
 
     return (

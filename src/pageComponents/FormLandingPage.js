@@ -5,7 +5,6 @@ import { fetchVidamooVideoStatus } from '../API/idomooAPI';
 import { connect } from 'react-redux';
 import Loader from '../components/Loader';
 import Form from '../components/Form';
-import PreviewVideo from './PreviewVideoPage';
 import './FormLandingPage.css';
 
 function FormLandingPage({
@@ -18,7 +17,6 @@ function FormLandingPage({
     videoGeneratedStatusUrl,
     setVideoGeneratedStatus,
     videoGeneratedStatus,
-    videoURL,
 }) {
     useEffect(() => {
         fetchStoryBoardById();

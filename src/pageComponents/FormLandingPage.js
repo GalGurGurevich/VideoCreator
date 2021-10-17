@@ -43,12 +43,8 @@ function FormLandingPage({
     }, [videoGeneratedStatusUrl, videoGeneratedStatus, setVideoGeneratedStatus]);
 
     function renderByAppStatus() {
-        if (videoGeneratedStatus === 'Pending') {
-            return <Loader loadingTxt={"The Video is on it's way!..."} />;
-        }
         if (!storyBoardFetchStatus || storyBoardFetchStatus === 'Loading' || videoCreatorResponseStatus === 'Loading') {
-            if (videoCreatorResponseStatus === 'Loading') return <Loader loadingTxt={'Sending Video Generate Req, Please Wait...'} />;
-            return <Loader />;
+            return (videoCreatorResponseStatus === 'Loading') ? <Loader loadingTxt={'Sending Video Generate Req, Please Wait...'} /> : <Loader />;
         }
         if (storyBoardFetchStatus === 'Completed' || videoCreatorResponseStatus === 'Completed') {
             return <Form stories={stories} setField={setField} initGenerateVideo={initGenerateVideo} />;

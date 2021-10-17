@@ -42,3 +42,16 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Developer Notes ###
+
+to run this project on a clean machine make sure you have node if not go to: https://nodejs.org/en/download/
+then clone the project to your computer using git: https://git-scm.com/ 
+simply copy the url https://github.com/GalGurGurevich/VideoCreator.git with any cmd using: git clone _url_ to a folder of your choice
+then install all npm packages using the cmd in the folder by typing: npm install
+finally type: npm start it should open your browser with the app runing
+
+* please don't judge the css too much I didn't put all effort on styling the form according to the Zepplin becouse I tought it was more time consuming then focusing on the app general logic
+* I would think a react router could be also a good solution to navigate between pages according to app state
+* clearing timeout in effect could also possible be a better approach in form page component
+* also adding more input feilds along side the dynamic ones of required story feilds could be better solution then the hard coded one at the moment, again a matter of time.

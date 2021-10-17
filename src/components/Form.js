@@ -3,7 +3,6 @@ import DynamicField from './DynamicField'
 
 export default function Form({stories, setField, initGenerateVideo}) {
 
-    console.log("Form: ", stories)
     function renderInputsByKeys(stories) {
         const inputs = Object.values(stories).map(function(field, i) {
             return (

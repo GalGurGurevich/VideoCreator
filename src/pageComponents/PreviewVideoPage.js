@@ -12,7 +12,7 @@ export default function PreviewVideo({videoURL}) {
     
     useEffect(() => {
         window.idmPlayerCreate(player_options, "idm_player");
-    },[])
+    },[videoURL, player_options])
     
     return (
         <div>

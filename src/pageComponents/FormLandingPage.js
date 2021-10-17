@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { fetchStoryBoardById, setField, initGenerateVideo, setVideoGeneratedStatus } from '../redux/VideoSlice';
 import { fetchVidamooVideoStatus } from '../API/idomooAPI';
 import { connect } from 'react-redux';
-import Loader from '../shared/Loader';
-import Form from '../shared/Form';
-import PreviewVideo from './PreviewVideo';
+import Loader from '../components/Loader';
+import Form from '../components/Form';
+import PreviewVideo from './PreviewVideoPage';
 import './FormLandingPage.css';
 
 function FormLandingPage({
-    status,
+    storyBoardFetchStatus,
     stories,
     setField,
     fetchStoryBoardById,
@@ -49,14 +49,14 @@ function FormLandingPage({
         if (videoGeneratedStatus === 'VIDEO_AVAILABLE') {
             return <PreviewVideo videoURL={videoURL} />;
         }
-        if (!status || status === 'Loading' || videoCreatorResponseStatus === 'Loading') {
+        if (!storyBoardFetchStatus || storyBoardFetchStatus === 'Loading' || videoCreatorResponseStatus === 'Loading') {
             if (videoCreatorResponseStatus === 'Loading') return <Loader loadingTxt={'Sending Video Generate Req, Please Wait...'} />;
             return <Loader />;
         }
-        if (status === 'Completed' || videoCreatorResponseStatus === 'Completed') {
+        if (storyBoardFetchStatus === 'Completed' || videoCreatorResponseStatus === 'Completed') {
             return <Form stories={stories} setField={setField} initGenerateVideo={initGenerateVideo} />;
         }
-        if (status === 'Error' || videoCreatorResponseStatus === 'Error') {
+        if (storyBoardFetchStatus === 'Error' || videoCreatorResponseStatus === 'Error') {
             return <p>Server Error...</p>;
         }
     }
@@ -66,7 +66,7 @@ function FormLandingPage({
 
 function mapStateToProps(state) {
     return {
-        status: state.video.status,
+        storyBoardFetchStatus: state.video.storyBoardFetchStatus,
         stories: state.video.story,
         videoCreatorResponseStatus: state.video.videoCreatorResponseStatus,
         videoGeneratedStatusUrl: state.video.videoGeneratedStatusUrl,

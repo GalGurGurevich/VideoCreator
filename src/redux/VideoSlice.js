@@ -3,7 +3,7 @@ import { fetchStory, createStory } from '../API/idomooAPI';
 
 const initialState = {
     story: {},
-    status: '',
+    storyBoardFetchStatus: '',
     videoCreatorResponseStatus: '',
     videoCreatorResponseData: {},
     videoGeneratedStatusUrl: null,
@@ -34,10 +34,10 @@ export const videoSlice = createSlice({
     },
     extraReducers: {
         [fetchStoryBoardById.pending]: (state, action) => {
-            state.status = 'Loading';
+            state.storyBoardFetchStatus = 'Loading';
         },
         [fetchStoryBoardById.fulfilled]: (state, action) => {
-            state.status = 'Completed';
+            state.storyBoardFetchStatus = 'Completed';
             let dictionary = {};
             for (let i = 0; i < action.payload.length; i++) {
                 dictionary[action.payload[i].key] = action.payload[i];
@@ -45,7 +45,7 @@ export const videoSlice = createSlice({
             state.story = dictionary;
         },
         [fetchStoryBoardById.rejected]: (state, action) => {
-            state.status = 'Error';
+            state.storyBoardFetchStatus = 'Error';
         },
         [initGenerateVideo.pending]: (state, action) => {
             state.videoCreatorResponseStatus = 'Loading';

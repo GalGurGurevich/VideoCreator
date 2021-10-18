@@ -2,6 +2,7 @@ import React from 'react';
 import FormLandingPage from './pageComponents/FormLandingPage'
 import PreviewVideoPage from './pageComponents/PreviewVideoPage'
 import Loader from './components/Loader'
+import Error from './components/Error'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { connect } from 'react-redux';
 
@@ -13,6 +14,9 @@ function App({videoGeneratedStatus, videoURL}) {
     }
     if(videoGeneratedStatus === 'VIDEO_AVAILABLE') {
       return <PreviewVideoPage videoURL={videoURL} /> 
+    }
+    if(videoGeneratedStatus === 'Error') {
+      return <Error />
     }
     return <FormLandingPage />
   }

@@ -5,6 +5,7 @@ import { fetchVidamooVideoStatus } from '../API/idomooAPI';
 import { connect } from 'react-redux';
 import Loader from '../components/Loader';
 import Form from '../components/Form';
+import Error from '../components/Error'
 import './FormLandingPage.css';
 
 function FormLandingPage({
@@ -32,8 +33,11 @@ function FormLandingPage({
                         fetch();
                     }, 3000);
                 }
-                if (result?.status === 'VIDEO_AVAILABLE') {
+                else if (result?.status === 'VIDEO_AVAILABLE') {
                     setVideoGeneratedStatus('VIDEO_AVAILABLE');
+                }
+                else {
+                    setVideoGeneratedStatus('Error');
                 }
             }
             fetch();
@@ -48,7 +52,7 @@ function FormLandingPage({
             return <Form stories={stories} setField={setField} initGenerateVideo={initGenerateVideo} />;
         }
         if (storyBoardFetchStatus === 'Error' || videoCreatorResponseStatus === 'Error') {
-            return <p>Server Error...</p>;
+            return <Error />
         }
     }
 

@@ -48,11 +48,11 @@ function FormLandingPage({
         if (!storyBoardFetchStatus || storyBoardFetchStatus === 'Loading' || videoCreatorResponseStatus === 'Loading') {
             return (videoCreatorResponseStatus === 'Loading') ? <Loader loadingTxt={'Sending Video Generate Req, Please Wait...'} /> : <Loader />;
         }
-        if (storyBoardFetchStatus === 'Completed' || videoCreatorResponseStatus === 'Completed') {
-            return <Form stories={stories} setField={setField} initGenerateVideo={initGenerateVideo} />;
-        }
         if (storyBoardFetchStatus === 'Error' || videoCreatorResponseStatus === 'Error') {
             return <Error />
+        }
+        if (storyBoardFetchStatus === 'Completed' || videoCreatorResponseStatus === 'Completed') {
+            return <Form stories={stories} setField={setField} initGenerateVideo={initGenerateVideo} />;
         }
     }
 

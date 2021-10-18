@@ -54,10 +54,14 @@ export const videoSlice = createSlice({
             state.videoCreatorResponseStatus = 'Loading';
         },
         [initGenerateVideo.fulfilled]: (state, action) => {
-            state.videoCreatorResponseStatus = 'Completed';
-            state.videoCreatorResponseData = action.payload;
-            state.videoGeneratedStatusUrl = action.payload?.output?.video[0]?.links?.check_status_url;
-            state.videoGeneratedUrl = action.payload?.output?.video[0]?.links?.url;
+            if(action.payload.status === "Error") {
+                state.videoCreatorResponseStatus = 'Error';
+            } else {
+                state.videoCreatorResponseStatus = 'Completed';
+                state.videoCreatorResponseData = action.payload;
+                state.videoGeneratedStatusUrl = action.payload?.output?.video[0]?.links?.check_status_url;
+                state.videoGeneratedUrl = action.payload?.output?.video[0]?.links?.url;
+            }
         },
         [initGenerateVideo.rejected]: (state, action) => {
             state.videoCreatorResponseStatus = 'Error';

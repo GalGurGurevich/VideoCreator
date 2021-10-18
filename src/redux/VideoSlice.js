@@ -31,6 +31,9 @@ export const videoSlice = createSlice({
         setVideoGeneratedStatus: (state, action) => {
             state.videoGeneratedStatus = action.payload;
         },
+        resetState: 
+            state => initialState
+        ,
     },
     extraReducers: {
         [fetchStoryBoardById.pending]: (state, action) => {
@@ -62,6 +65,6 @@ export const videoSlice = createSlice({
     },
 });
 
-export const { setField, setVideoGeneratedStatus } = videoSlice.actions;
+export const { setField, setVideoGeneratedStatus, resetState } = videoSlice.actions;
 
 export default videoSlice.reducer;

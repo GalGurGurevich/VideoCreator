@@ -7,10 +7,26 @@ export default function DynamicField({field, setField}) {
         setField(data);
     }
 
+    function renderCorrectInput(field) {
+        switch(field?.key) {
+            case 'Email address':
+                return (
+                    <>
+                        <label>{field.key}:</label>
+                        <input type='email' value={field.value} placeholder={field.description || `type ${field.key} here...`} required={true} onChange={e => updateFieldValue(e.target.value, field)}></input>
+                    </>
+                )
+            default:
+                return (
+                    <>
+                        <label>{field.key}:</label>
+                        <input type='text' value={field.value} placeholder={field.description || `type ${field.key} here...`} required={true} onChange={e => updateFieldValue(e.target.value, field)}></input>
+                    </>
+                )
+        }
+    }
+
     return (
-        <>
-            <label>{field.key}:</label>
-            <input type='text' value={field.value} placeholder={field.description || `type ${field.key} here in english...`} required={true} onChange={e => updateFieldValue(e.target.value, field)}></input>
-        </>
+        renderCorrectInput(field)
     )
 }

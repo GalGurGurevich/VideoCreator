@@ -20,7 +20,7 @@ function PreviewVideo({videoURL, resetState}) {
     return (
         <div>
             <button onClick={() => resetState()}>Go Back</button>
-            <div id="idm_player" class="idm-player" ></div>
+            <div id="idm_player" className="idm-player" ></div>
         </div>
     )
 }

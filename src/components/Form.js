@@ -1,14 +1,24 @@
 import React from 'react'
 import DynamicField from './DynamicField'
+import './Form.css'
 
 export default function Form({stories, setField, initGenerateVideo}) {
 
     function renderInputsByKeys(stories) {
-        const inputs = Object.values(stories).map(function(field, i) {
+        let formStructure = Object.values(stories);
+        formStructure = [[formStructure[0], formStructure[1]], ...formStructure.slice(2).map(x => [x])];
+        const inputs = formStructure.map(function(field, i) {
+            if(field.length > 1) {
+                return (
+                    <div className="dual-field d-flex justify-content-between">
+                        {field.map(function(f, i) {
+                            return <DynamicField field={f} setField={setField} key={i}></DynamicField>
+                        })}
+                    </div>
+                )
+            }
             return (
-                <React.Fragment key={i}>
-                    <DynamicField field={field} setField={setField}></DynamicField>
-                </React.Fragment>
+                <DynamicField field={field[0]} setField={setField} key={i}></DynamicField>
             )
           })
         return inputs;

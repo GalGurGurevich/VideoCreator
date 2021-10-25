@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default function DynamicField({field, setField}) {
-
+export default function DynamicField({field, setField, i}) {
+    
     function updateFieldValue(val, field) {
         const data = { value: val, key: field.key }
         setField(data);
@@ -11,17 +11,17 @@ export default function DynamicField({field, setField}) {
         switch(field?.key) {
             case 'Email address':
                 return (
-                    <>
+                    <div className="field-row d-flex flex-column w-100">
                         <label>{field.key}:</label>
                         <input type='email' value={field.value} placeholder={field.description || `type ${field.key} here...`} required={true} onChange={e => updateFieldValue(e.target.value, field)}></input>
-                    </>
+                    </div>
                 )
             default:
                 return (
-                    <>
+                    <div className="field-row d-flex flex-column w-100">
                         <label>{field.key}:</label>
                         <input type='text' value={field.value} placeholder={field.description || `type ${field.key} here...`} required={true} onChange={e => updateFieldValue(e.target.value, field)}></input>
-                    </>
+                    </div>
                 )
         }
     }

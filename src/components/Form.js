@@ -6,7 +6,7 @@ export default function Form({stories, setField, initGenerateVideo}) {
 
     function renderInputsByKeys(stories) {
         let formStructure = Object.values(stories);
-        formStructure = [[formStructure[0], formStructure[1]], ...formStructure.slice(2).map(x => [x])];
+        formStructure = [[formStructure[2], formStructure[3]], ...formStructure.slice(0, 2).map(x => [x]) , ...formStructure.slice(4).map(x => [x])];
         const inputs = formStructure.map(function(field, i) {
                 return (
                     <div className="field-row d-flex justify-content-between">

@@ -6,3 +6,17 @@
     border-radius: 8px 0px 0px 8px;
 }
 
+@media only screen and (max-width: 640px) {
+    .form-container {
+        padding: 5px !important;
+    }
+    .input-box .dynamic-field-row {
+        justify-content: unset !important;
+    }
+    .input-box .field-row {
+        width: 90%;
+    }
+    .input-box .field-row:nth-child(1) .dynamic-field-row {
+        width: 50% !important;
+    }
+}

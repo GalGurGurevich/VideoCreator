@@ -6,7 +6,7 @@
     border-radius: 8px 0px 0px 8px;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 376px) {
     .form-container {
         padding: 5px !important;
     }

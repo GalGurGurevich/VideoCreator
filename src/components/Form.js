@@ -9,7 +9,7 @@ export default function Form({stories, setField, initGenerateVideo}) {
         formStructure = [[formStructure[0], formStructure[1]], ...formStructure.slice(2).map(x => [x])];
         const inputs = formStructure.map(function(field, i) {
                 return (
-                    <div className="dual-field d-flex justify-content-between">
+                    <div className="field-row d-flex justify-content-between">
                         {field.map(function(f, i) {
                             return <DynamicField field={f} setField={setField} key={i}></DynamicField>
                         })}
@@ -28,10 +28,10 @@ export default function Form({stories, setField, initGenerateVideo}) {
     return (
         <form className="form-container d-flex flex-column p-2" onSubmit={(e) => callToMakeVideo(e)}>
             <h3>Enter details below to generate video</h3>
-            <div className="d-flex flex-column">
+            <div className="input-box d-flex flex-column">
                 {renderInputsByKeys(stories)}
             </div>
-            <div className="d-flex justify-contnet-center pt-2">
+            <div className="d-flex justify-contnet-center p-1">
                 <button type="submit">Generate</button>
             </div>
         </form>

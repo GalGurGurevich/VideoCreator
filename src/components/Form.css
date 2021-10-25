@@ -1,15 +1,8 @@
-.dual-field .field-row:nth-child(2) {
-    padding-left: 5px;
+.input-box .field-row:nth-child(1) .dynamic-field-row input[type=text] {
+    border-radius: 0px 8px 8px 0px;
 }
 
-.dual-field .field-row:first-child {
-    padding-right: 5px;
-}
-
-.dual-field .field-row:first-child input {
+.input-box .field-row:nth-child(1) .dynamic-field-row input[type=email] {
     border-radius: 8px 0px 0px 8px;
 }
 
-.dual-field .field-row:nth-child(2) input {
-    border-radius: 0px 8px 8px 0px;
-}

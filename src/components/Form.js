@@ -8,7 +8,6 @@ export default function Form({stories, setField, initGenerateVideo}) {
         let formStructure = Object.values(stories);
         formStructure = [[formStructure[0], formStructure[1]], ...formStructure.slice(2).map(x => [x])];
         const inputs = formStructure.map(function(field, i) {
-            if(field.length > 1) {
                 return (
                     <div className="dual-field d-flex justify-content-between">
                         {field.map(function(f, i) {
@@ -16,11 +15,7 @@ export default function Form({stories, setField, initGenerateVideo}) {
                         })}
                     </div>
                 )
-            }
-            return (
-                <DynamicField field={field[0]} setField={setField} key={i}></DynamicField>
-            )
-          })
+            })
         return inputs;
     }
 

@@ -9,6 +9,7 @@ body {
     display: flex;
     flex-direction: column;
     padding: 2em;
+    height: 100vh;
 }
 
 .form-title {
